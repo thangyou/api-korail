@@ -1,5 +1,5 @@
 package com.newzone.apikorail.controller;
-// Java
+
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
