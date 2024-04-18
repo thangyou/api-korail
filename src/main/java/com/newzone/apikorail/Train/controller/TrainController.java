@@ -1,10 +1,7 @@
 package com.newzone.apikorail.Train.controller;
 
 import com.newzone.apikorail.Train.model.TrainKind;
-import com.newzone.apikorail.Train.model.dto.KindRequest;
-import com.newzone.apikorail.Train.model.dto.KindResponse;
-import com.newzone.apikorail.Train.model.dto.TrainRequest;
-import com.newzone.apikorail.Train.model.dto.TrainResponse;
+import com.newzone.apikorail.Train.model.dto.*;
 import com.newzone.apikorail.Train.service.TrainService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,6 +35,18 @@ public class TrainController
 
     private final TrainService trainService;
 
+    /**
+     * 출/도착지 기반 열차 정보 조회 API
+     * [GET] /trainInfo/get-trainInfo-of-station
+     *
+     * @param departurePlaceId
+     * @param arrivalPlaceId
+     * @param departureDate
+     * @param trainGradeCode
+     * @param numOfRows
+     * @param dataType
+     * @return BaseResponse<List>
+     */
     @Operation(summary = "출/도착지 기반 열차 정보 조회", description = "열차의 출발역, 도착역 정보를 조회")
 //    @Parameter(name = "TrainRequest", description = "")
     @GetMapping("/get-trainInfo-of-station")
@@ -78,6 +87,25 @@ public class TrainController
         KindRequest kindRequest = new KindRequest();
         kindRequest.setVehiclekndnm(vehiclekndnm);
         return trainService.getKindNameOfTrain(kindRequest);
+    }
+
+    @Operation(summary = "도시 코드 목록 조회", description = "도시 코드의 목록을 조회")
+    @GetMapping("/get-CityCode-List")
+    public List<CityCodeResponse> getCityCodeList() throws IOException {
+        return trainService.getCityCodeList();
+    }
+
+    @Operation(summary = "시/도별 기차역 목록 조회", description = "시도별로 기차역의 목록을 조회")
+    @GetMapping("/get-CtyAcc-to-TrainSttn-List")
+    public List<CtyAcctoTrainSttnResponse> getCtyAcctoTrainSttnList(@RequestParam("cityCode") String cityCode,
+                                                                    @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
+                                                                    @RequestParam(value = "numOfRows", defaultValue = "10") int numOfRows
+                                                                    ) throws IOException {
+        CtyAcctoTrainSttnRequest request = new CtyAcctoTrainSttnRequest();
+        request.setCityCode(cityCode);
+        request.setPageNo(pageNo);
+        request.setNumOfRows(numOfRows);
+        return trainService.getCtyAcctoTrainSttnList(request);
     }
 
 }
