@@ -1,8 +1,7 @@
-package com.newzone.apikorail.train.model.dto;
+package com.newzone.apikorail.Train.model.dto;
 
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 //@RequiredArgsConstructor

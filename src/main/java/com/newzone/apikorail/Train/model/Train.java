@@ -1,4 +1,4 @@
-package com.newzone.apikorail.train.model;
+package com.newzone.apikorail.Train.model;
 
 import lombok.Getter;
 import lombok.Setter;

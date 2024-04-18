@@ -1,4 +1,4 @@
-package com.newzone.apikorail.train.repository;
+package com.newzone.apikorail.Train.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;

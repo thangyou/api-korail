@@ -1,6 +1,5 @@
-package com.newzone.apikorail.train.model.dto;
+package com.newzone.apikorail.Train.model.dto;
 
-import com.newzone.apikorail.train.model.Train;
 import lombok.Getter;
 import lombok.Setter;
 
