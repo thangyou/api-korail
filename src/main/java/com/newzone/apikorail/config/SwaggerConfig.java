@@ -17,8 +17,8 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("Springdoc 테스트")
-                .description("Springdoc을 사용한 Swagger UI 테스트")
+                .title("Korail API")
+                .description("출발/도착지를 기준으로 열차 운행 시간표 정보 조회하는 서비스")
                 .version("1.0.0");
     }
 }
