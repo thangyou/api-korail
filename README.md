@@ -1,27 +1,13 @@
 **API-Korail**
 ----
 
-출발/도착지를 기준으로 열차(KTX 포함)의 운행 시간표 정보를 조회하는 열차 정보 서비스이다. [국토교통부(TAGO)의 열차 정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098552) 오픈 API를 활용한다.
+출발/도착지를 기준으로 열차(KTX 포함)의 운행 시간표 정보를 조회하는 열차 정보 서비스이다. 
 
-## Get a point Departure/Arrival based Train Information
+[국토교통부(TAGO)의 열차 정보](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15098552) 오픈 API를 활용한다.
+
+## 출/도착지 기반 열차 정보 조회
 
 ### Request
-
-`GET /thing/`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/
-
-### Response
-
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 2
-
-    []
-
 
 * **URL**
 
@@ -57,6 +43,8 @@
 
   <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
 
+### Response
+
 * **Success Response:**
 
   <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
@@ -76,7 +64,7 @@
     * **Code:** 422 UNPROCESSABLE ENTRY <br />
       **Content:** `{ error : "Email Invalid" }`
 
-* **Sample Call:**
+* **Example Call | Schema:**
 ```json
     [
       {
@@ -93,4 +81,117 @@
   ```
 * **Notes:**
 
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
+  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>
+
+## 차량 종류 목록 조회
+
+### Request
+
+* **URL**
+
+  /TrainInfoService/getVhcleKndList?
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+   **Required:**
+
+   `servicekey=[URL-Encode]`
+
+   **Optional:**
+
+   `_type=[String]`
+
+### Response
+
+* **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** `OK`
+
+
+* **Example Call | Schema:**
+```json
+    [
+      {
+        "vehiclekndid": "string",
+        "vehiclekndnm": "string"
+      }
+    ]
+  ```
+
+## 시/도별 기차역 목록 조회
+
+### Request
+
+* **URL**
+
+  /TrainInfoService/getCtyAcctoTrainSttnList?
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+   **Required:**
+
+   `cityCode=[String]`
+
+   **Optional:**
+
+   `pageNo=[integer]`
+
+   `numOfRows=[integer]`
+
+### Response
+
+* **Success Response:**
+
+  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+
+    * **Code:** 200 <br />
+      **Content:** `OK`
+
+* **Example Call | Schema:**
+```json
+    [
+      {
+        "nodeid": "string",
+        "nodename": "string"
+      }
+    ]
+  ```
+
+## 도시 코드 목록 조회
+
+### Request
+
+* **URL**
+
+  /TrainInfoService/getCtyCodeList
+
+* **Method:**
+
+  `GET`
+
+### Response
+
+* **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** `OK`
+
+
+* **Example Call | Schema:**
+```json
+    [
+      {
+        "citycode": "string",
+        "cityname": "string"
+      }
+    ]
+  ```
